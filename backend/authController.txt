@@ -1,0 +1,62 @@
+import { connection } from "../config/database.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+connection → para ejecutar queries a MySQL.
+
+bcryptjs → para hashear.
+
+jsonwebtoken → para generar y validar tokens JWT.
+ Que es JWT? 
+          Cuando un usuario inicia sesión correctamente (login), el servidor genera un token firmado
+           digitalmente (JWT) que contiene datos del usuario (por ejemplo, su id o email).
+             En otras palabras es usado para transmitir información de manera segura entre un cliente
+              (por ejemplo, React) y un servidor (Node.js).
+                Este token se guarda del lado del cliente (por ejemplo, en localStorage) 
+                    y se envía en cada petición al servidor para acceder a rutas protegidas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------- Función login
+
+Busca al usuario por cuenta.
+
+Compara el password ingresado con el hash guardado.
+
+Si todo es correcto, genera un token JWT con:
+
+jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+
+Devuelve el token y los datos básicos del usuario.
+
+------ Función profile
+
+Solo responde si el token es válido.
+
+Muestra la información del usuario que viene desde el middleware (req.user).
+
+✅ Resultado esperado
+
+Si hacés un POST a /api/auth/register con datos correctos → crea usuario.
+
+Si hacés un POST a /api/auth/login → devuelve el token JWT.
+
+Si hacés un GET a /api/auth/me con el token → devuelve los datos del usuario autenticado.
