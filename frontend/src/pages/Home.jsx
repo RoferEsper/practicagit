@@ -49,7 +49,7 @@ const Home = () => {
 
           {/* 🔹 Acceso general a productos */}
           <div className="mt-3">
-            <Link to="/productos" className="btn btn-info me-2">
+            <Link to="/productos" className="btn btn-dark me-2">
               Ir a Productos
             </Link>
           </div>
